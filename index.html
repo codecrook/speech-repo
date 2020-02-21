@@ -4,15 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Speech Repo | Speech Storing Application for Politicians</title>
 </head>
 
 <body>
     <header>
-
+        <div id="logo">Speech Repo</div>
+        <div id="opt-container">
+            <button class="opt-btn" id="add-btn">Add New Speech</button>
+            <button class="opt-btn" id="view-all-btn">View All Speeches</button>
+        </div>
     </header>
     <main>
+        <div id="add-new-tab" class="tab">
+            <form>
+                <label>
+                    Date: <br>
+                    <input type="date" name="speech-date" id="speech-date">
+                </label> <br>
+                <label>
+                    Author: <br>
+                    <input type="text" name="speech-author" id="speech-author">
+                </label> <br>
+                <label>
+                    Keywords: <br>
+                    <input type="text" name="speech-keywords" id="speech-keywords">
+                </label> <br>
+                <label>
+                    Speech: <br>
+                    <textarea name="speech-text" id="speech-text"></textarea>
+                </label> <br>
+                <button name="add-speech-btn" id="add-speech-btn">Add Speech</button>
+            </form>
+        </div>
 
+        <div id="view-all-tab" class="tab">
+            Tab to show all the speeches
+        </div>
     </main>
     <footer>
 
