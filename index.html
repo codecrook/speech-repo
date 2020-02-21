@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <title>Speech Repo | Speech Storing Application for Politicians</title>
 </head>
 
@@ -15,9 +16,10 @@
             <button class="opt-btn" id="view-all-btn">View All Speeches</button>
         </div>
     </header>
+    <hr>
     <main>
-        <div id="add-new-tab" class="tab">
-            <form>
+        <section id="add-new-tab" class="tab">
+            <form id="add-speech-form">
                 <label>
                     Date: <br>
                     <input type="date" name="speech-date" id="speech-date">
@@ -36,11 +38,12 @@
                 </label> <br>
                 <button name="add-speech-btn" id="add-speech-btn">Add Speech</button>
             </form>
-        </div>
+        </section>
 
-        <div id="view-all-tab" class="tab">
-            Tab to show all the speeches
-        </div>
+        <section id="view-all-tab" class="tab">
+            <input type="text" id="search-speech">
+            <div id="all-speech-display"></div>
+        </section>
     </main>
     <footer>
 
