@@ -9,7 +9,7 @@
             this.speech = speech;
         }
     }
-    const data = {
+    const Data = {
         allSpeeches: [],
         filteredSpeeches: [],
         tabSelected: 'add-new-tab',
@@ -27,20 +27,12 @@
         speechKeywords: document.querySelector('#speech-keywords'),
         speechText: document.querySelector('#speech-text'),
         addSpeechBtn: document.querySelector('#add-speech-btn'),
-        searchSpeech: document.querySelector('#search-speech'),
-
-        speechSnippetBuilder: (speech) => {
-            return `
-            <div class='speech'>
-                <div class='author'>${speech.author}</div>
-            </div>
-            `;
-        }
+        searchSpeech: document.querySelector('#search-speech')
     };
-    const controlMethods = {
-        selectTab: (e) => data.tabSelected = (e.target.id === 'add-btn') ? 'add-new-tab' : 'view-all-tab',
+    const ControlMethods = {
+        selectTab: (e) => Data.tabSelected = (e.target.id === 'add-btn') ? 'add-new-tab' : 'view-all-tab',
         showTab: () => {
-            if (data.tabSelected === 'add-new-tab') {
+            if (Data.tabSelected === 'add-new-tab') {
                 DOMStrings.addNewTab.style.display = 'block';
                 DOMStrings.viewAllTab.style.display = 'none';
             } else {
@@ -55,31 +47,44 @@
                 keywords = DOMStrings.speechKeywords.value,
                 speech = DOMStrings.speechText.value;
 
-            data.allSpeeches.push(new Speech(data.id, date, author, keywords, speech));
-            ++data.id;
-            DOMStrings.addSpeechForm.reset();
-            window.alert(`Speech added! Total Speeches: ${data.id}`)
-            console.log(data.allSpeeches);
+            if (date.trim() !== '' && author.trim() !== '' && keywords.trim() !== '' && speech.trim() !== '') {
+                Data.allSpeeches.push(new Speech(Data.id, date, author, keywords, speech));
+                DOMStrings.addSpeechForm.reset();
+                ++Data.id;
+                window.alert(`Speech added! Total Speeches: ${Data.id}`)
+            } else {
+                window.alert(`Enter some data!`);
+            }
+        },
+        speechSnippetBuilder: (speech) => {
+            return `
+            <div class='speech'>
+                <div class='author'>${speech.author}</div>
+                <div class='date'>${speech.date}</div>
+                <div class='keyword'>${speech.keywords}</div>
+            </div>
+            `;
         },
         showAllSpeeches: (speeches) => {
             DOMStrings.allSpeechDisplay.innerHTML = '';
-            speeches.forEach(speech => {
-                DOMStrings.allSpeechDisplay.innerHTML += DOMStrings.speechSnippetBuilder(speech);
-            });
+            (speeches.length > 0) ? speeches.forEach(speech => {
+                DOMStrings.allSpeechDisplay.innerHTML += ControlMethods.speechSnippetBuilder(speech);
+            }) :
+                DOMStrings.allSpeechDisplay.innerHTML = `It's all blank here`;
         }
     };
 
-    DOMStrings.addNewBtn.addEventListener('click', (e) => { controlMethods.selectTab(e); controlMethods.showTab() });
+    DOMStrings.addNewBtn.addEventListener('click', (e) => { ControlMethods.selectTab(e); ControlMethods.showTab() });
     DOMStrings.viewAllBtn.addEventListener('click', (e) => {
-        controlMethods.selectTab(e);
-        controlMethods.showTab();
-        controlMethods.showAllSpeeches(data.allSpeeches);
+        ControlMethods.selectTab(e);
+        ControlMethods.showTab();
+        ControlMethods.showAllSpeeches(Data.allSpeeches);
     });
-    DOMStrings.addSpeechBtn.addEventListener('click', controlMethods.addSpeech);
+    DOMStrings.addSpeechBtn.addEventListener('click', ControlMethods.addSpeech);
     DOMStrings.searchSpeech.addEventListener('keyup', (e) => {
-        data.filteredSpeeches = data.allSpeeches.filter(speech => speech.author.includes(e.target.value));
-        controlMethods.showAllSpeeches(data.filteredSpeeches);
+        Data.filteredSpeeches = Data.allSpeeches.filter(speech => speech.author.includes(e.target.value));
+        ControlMethods.showAllSpeeches(Data.filteredSpeeches);
     });
 
-    controlMethods.showTab();
+    ControlMethods.showTab();
 }

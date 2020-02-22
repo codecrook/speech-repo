@@ -1,3 +1,48 @@
+#logo {
+    font-size: 1.5em;
+}
+
+#add-new-tab {
+    text-align: center;
+}
+
+#add-speech-form {
+    border: 0.3px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px gray;
+    display: inline-block;
+    text-align: left;
+    margin-top: 10vh;
+    padding: 20px;
+}
+
+form input, textarea {
+    width: 100%;
+}
+
 #opt-container {
     text-align: center;
+}
+
+#search-container {
+    font-size: 1.2em;
+    padding-left: 25px;
+    text-align: left; 
+}
+
+#all-speech-display {
+    padding: 50px;
+}
+
+.speech {
+    border: 0.3px solid black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px gray;
+    margin-bottom: 4px;
+    padding: 10px;
+}
+
+.author {
+    font-size: 1.1em;
+    font-weight: bold;
 }
